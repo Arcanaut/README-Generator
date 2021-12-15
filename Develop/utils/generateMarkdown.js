@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {}
@@ -14,6 +16,28 @@ function renderLicenseSection(license) {}
 function generateMarkdown(data) {
   return `# ${data.title}
 
+  ##Table of Contents
+
+  ## Description
+  ${data.about}
+
+  ## Installation 
+  ${data.install}
+
+  ##Usage
+  ${data.usage}
+
+  ##Credits
+  ${data.credits}
+
+  ##Test
+  ${data.test}
+
+  ##Questions
+  ${data.questions}
+
+  ##License
+  ${data.license}
 `;
 }
 
