@@ -2,7 +2,9 @@
 const inquirer = require('inquirer');
 const generatePage = require('./utils/generateMarkdown');
 
-const promptUser = () => {
+
+
+const promptUserQuestions = () => {
     return inquirer.prompt([{
             type: 'input',
             name: 'title',
@@ -34,32 +36,11 @@ const promptUser = () => {
 
         {
             type: 'confirm',
-            name: 'confirmTable',
-            message: 'Would you like to enter a table of content section?',
-            default: true
-        },
-        {
-            type: 'checkbox',
-            name: 'table',
-            message: 'what sections would you like to link to?',
-            choices: ['Description', 'Features', 'Installation', 'Usage', 'Contribution', 'Test', 'License', 'Badges', ],
-            when: ({
-                confirmTable
-            }) => {
-                if (confirmTable) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+            name: 'confirmFeatures',
+            message: 'Would you like to enter an explanation of the features? (Recommended)',
+            default: false
         },
 
-        {
-            type: 'confirm',
-            name: 'confirmFeatures',
-            message: 'Would you like to enter an explaintion of the features? (Recommended)',
-            default: true
-        },
         {
             type: 'input',
             name: 'features',
@@ -73,14 +54,97 @@ const promptUser = () => {
                     return false;
                 }
             }
+        },
+
+
+        {
+            type: 'input',
+            name: 'install',
+            message: 'What does the program require for installation? (required)',
+            validate: installInput => {
+                if (installInput) {
+                    return true;
+                } else {
+                    console.log('Please give installation instructions.')
+                    return false;
+                }
+            }
+
+        },
+
+        {
+            type: 'input',
+            name: 'usage',
+            message: 'How does the user operate this program? (required)',
+            validate: usageInput => {
+                if (usageInput) {
+                    return true;
+                } else {
+                    console.log('Please explain how to use this program.')
+                    return false;
+                }
+            }
+
+        },
+
+        {
+            type: 'confirm',
+            name: 'confirmTest',
+            message: 'If you wrote tests for your program, confirm them here, or skip',
+            default: false
+        },
+
+        {
+            type: 'input',
+            name: 'test',
+            message: 'Provide some information about the tests you ran.',
+            when: ({
+                confirmTest
+            }) => {
+                if (confirmTest) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+
+        {
+            type: 'input',
+            name: 'questions',
+            message: 'where can users reach you if they have questions?',
+            validate: questionsInput => {
+                if (questionsInput) {
+                    return true;
+                } else {
+                    console.log('Please leave contact information.')
+                    return false;
+                }
+            }
+        },
+
+        
+
+    ])/*.then(projectData => {
+        portfolioData.projects.push(projectData);
+        if (projectData.confirmAddProject) {
+            return promptProject(portfolioData);
+        } else {
+            return portfolioData;
         }
-    ]);
+    });*/
 };
 // TODO: Create an array of questions for user input
 const questions = [];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data, err => {
+        if (err) {
+            return console.log(err);
+        }
+    });
+};
 
 // TODO: Create a function to initialize app
 function init() {}
