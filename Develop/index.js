@@ -130,13 +130,28 @@ const promptUserQuestions = () => {
 
         {
             type: 'input',
-            name: 'questions',
+            name: 'userName',
             message: 'what is your github user name?',
             validate: questionsInput => {
                 if (questionsInput) {
                     return true;
                 } else {
-                    console.log('Please leave contact information.')
+                    console.log('Please enter github username.')
+                    return false;
+                }
+            },
+        
+        },
+
+        {
+            type: 'input',
+            name: 'email',
+            message: 'what email can people use to get in contact with you?',
+            validate: emailInput => {
+                if (emailInput) {
+                    return true;
+                } else {
+                    console.log('Please enter contact information.')
                     return false;
                 }
             },
@@ -176,6 +191,9 @@ const promptUserQuestions = () => {
         },
     ])
     .then(finalAnswers => {
+        finalAnswers.questions = `Got any questions, concerns, or kudos? Reach out to me at ${finalAnswers.email}! Want to see my other projects? Head on over to https://www.github.com/${finalAnswers.userName} to find more.`
+
+        finalAnswers.license = `This project is licensed under the ${finalAnswers.license} agreement. `
         console.log(finalAnswers)
     } )
 };
