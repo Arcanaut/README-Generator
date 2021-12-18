@@ -1,8 +1,11 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
-const generatePage = require('./utils/generateMarkdown');
+const fs = require('fs')
+const generateMarkdown = require('./utils/generateMarkdown')
 
 
+
+// TODO: Create an array of questions for user input
 
 const promptUserQuestions = () => {
     return inquirer.prompt([{
@@ -88,9 +91,25 @@ const promptUserQuestions = () => {
         },
 
         {
+            type: 'input',
+            name: 'credits',
+            message: 'Who contributed to this project? (required)',
+            validate: creditsInput => {
+                if (creditsInput) {
+                    return true;
+                } else {
+                    console.log('Please list who contributed to this project')
+                    return false;
+                }
+            }
+
+        },
+
+
+        {
             type: 'confirm',
             name: 'confirmTest',
-            message: 'If you wrote tests for your program, confirm them here, or skip',
+            message: 'If you wrote tests for your program, confirm that you did here, or skip',
             default: false
         },
 
@@ -112,7 +131,7 @@ const promptUserQuestions = () => {
         {
             type: 'input',
             name: 'questions',
-            message: 'where can users reach you if they have questions?',
+            message: 'what is your github user name?',
             validate: questionsInput => {
                 if (questionsInput) {
                     return true;
@@ -120,21 +139,47 @@ const promptUserQuestions = () => {
                     console.log('Please leave contact information.')
                     return false;
                 }
-            }
+            },
+        
         },
 
-        
+        {
+            type: 'checkbox',
+            name: 'table',
+            message: 'Which sections do you want to link to? (only select sections generated)',
+            choices: ['Description', 'Installation', 'Usage', 'Credits', 'Tests', 'Questions', 'License']
+        },
 
-    ])/*.then(projectData => {
-        portfolioData.projects.push(projectData);
-        if (projectData.confirmAddProject) {
-            return promptProject(portfolioData);
-        } else {
-            return portfolioData;
-        }
-    });*/
+        {
+            type: 'list',
+            message: 'Which license are you using?',
+            name: 'license',
+            choices: ['MIT', 'Apache', 'GNU', 'Mozilla Public 2.0', 'Boost Software 1.0', 'The Unlicense', 'ISC', 'No License']
+        },
+        {
+            type: 'list',
+            name: 'SubCategory',
+            message: 'if there is a sub-category of licenses it will appear when you choose it',
+            when: (answers) => {
+                if (answers.license === 'GNU') {
+                    return true;
+                }
+                return false;
+            },
+
+            choices: (answers) => {
+                if (answers.license === 'GNU') {
+                    return ['GNU AGPLv3', 'GNU GPLv3', 'GNU LGPLv3']
+                }
+
+            }
+        },
+    ])
+    .then(finalAnswers => {
+        console.log(finalAnswers)
+    } )
 };
-// TODO: Create an array of questions for user input
+promptUserQuestions();
 const questions = [];
 
 // TODO: Create a function to write README file
