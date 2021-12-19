@@ -2,7 +2,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs')
 const generateMarkdown = require('./utils/generateMarkdown')
-
+const questions = [];
 
 
 // TODO: Create an array of questions for user input
@@ -47,7 +47,7 @@ const promptUserQuestions = () => {
         {
             type: 'input',
             name: 'features',
-            message: 'Provide some information about the project features:',
+            message: 'Explain the project features.',
             when: ({
                 confirmFeatures
             }) => {
@@ -102,7 +102,6 @@ const promptUserQuestions = () => {
                     return false;
                 }
             }
-
         },
 
 
@@ -146,7 +145,7 @@ const promptUserQuestions = () => {
         {
             type: 'input',
             name: 'email',
-            message: 'what email can people use to get in contact with you?',
+            message: 'what email can people use to get in contact with you? (required)',
             validate: emailInput => {
                 if (emailInput) {
                     return true;
@@ -156,13 +155,6 @@ const promptUserQuestions = () => {
                 }
             },
         
-        },
-
-        {
-            type: 'checkbox',
-            name: 'table',
-            message: 'Which sections do you want to link to? (only select sections generated)',
-            choices: ['Description', 'Installation', 'Usage', 'Credits', 'Tests', 'Questions', 'License']
         },
 
         {
@@ -191,26 +183,48 @@ const promptUserQuestions = () => {
         },
     ])
     .then(finalAnswers => {
-        finalAnswers.questions = `Got any questions, concerns, or kudos? Reach out to me at ${finalAnswers.email}! Want to see my other projects? Head on over to https://www.github.com/${finalAnswers.userName} to find more.`
+        finalAnswers.questions = `Project created by ${finalAnswers.userName}. Have any questions, compliments, or concerns? Reach out to me at ${finalAnswers.email}! Want to see my other projects? Head on over to https://www.github.com/${finalAnswers.userName} to find more.`
 
-        finalAnswers.license = `This project is licensed under the ${finalAnswers.license} agreement. `
+        finalAnswers.license = `This project is licensed under the standard ${finalAnswers.license} agreement. `
         console.log(finalAnswers)
     } )
-};
-promptUserQuestions();
-const questions = [];
+    };
+    
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data, err => {
-        if (err) {
-            return console.log(err);
-        }
-    });
-};
+    const writeFile = data => {
+        //specify new file location and data
+        fs.writeFile('../dist/README.md', data, err => {
+            // if there is an error  return error
+            if (err) {
+                console.log(err);
+                return;
+            // Tell user their README has been created in the dist folder
+            } else {
+                
+                console.log("New README created in the /dist folder")
+            }
+        })
+      }; 
 
-// TODO: Create a function to initialize app
-function init() {}
+    // // TODO: Create a function to write README file
+
+ // TODO: Create a function to initialize app
+function init() {
+    //ask user questions
+    promptUserQuestions()
+      //then take the answers and pass them to generate Markdown
+    .then ( data => {
+        return generateMarkdown(data);
+    })
+      //then write the output of the generate markdown file 
+    .then (data => {
+        return writeFile(data);
+    })
+      //return error if needed
+    .catch(err => {
+        console.log(err)
+    })
+}
 
 // Function call to initialize app
 init();
