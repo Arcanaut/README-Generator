@@ -1,5 +1,5 @@
 const fs = require('fs');
-const inquirer = require('inquirer');
+ inquirer = require('inquirer');
 
 function generateMarkdown(questions) {
 // ![Github ,license](`http://img.shields.io/badge/license-${data.license}-green.svg`)
@@ -33,12 +33,11 @@ const {title, about, features, install, usage, credits, test, userName, email, l
   ## Usage
   ${usage}
 
-  ## Credits
-  ${credits}
-
   ## Tests
   ${test}
 
+## Credits
+  ${credits}
   ## Questions
   Project created by ${userName}. Have any questions, compliments, or concerns? Reach out to me at my email: <${email}>! Want to see my other projects? 
   Head on over to my [github](https://www.github.com/${userName}) to find more.

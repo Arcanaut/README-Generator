@@ -218,11 +218,12 @@ function init() {
         return generateMarkdown(questions)
     })
     .then(generated => {
-        fs.writeFile("./README.md", generated, err => {
+        fs.writeFile("./dist/README.md", generated, err => {
             if (err) throw err;
             console.log("File successfully written! Go to the dist folder to find it!");
         })
     });
+
 }
 
 // Function call to initialize app
