@@ -18,7 +18,7 @@
   By entering what parts a user wants to include in their README files, the user is able to efficiently create guides without having to sacrifice uniformity with their other repositories.
 
   ## Installation 
-  Node.js, ndm, ndm 'fs', ndm'inquirer'
+  Node.js, npm, npm 'fs', npm'inquirer'
 
   ## Usage
   navigate to the 'develop folder inside the terminal and run the command 'node index.js' From there follow the prompts until a message notifies a file has been created in the 'dist' folder. Once it has, navigate to the dist folder to find the newly created README.md file.
