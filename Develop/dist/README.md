@@ -1,5 +1,5 @@
  
-  n
+  README-Generator
   
   ## Table of Contents
   *[Description](#Description)
@@ -12,27 +12,28 @@
 
 
   ## Description
-  n
+  an app that allows the users to generate a README.md file template, that is automatically filled and formatted based on answers they give.
 
   ## Features
-  undefined
+  By entering what parts a user wants to include in their README files, the user is able to efficiently create guides without having to sacrifice uniformity with their other repositories.
 
   ## Installation 
-  n
+  Node.js, ndm, ndm 'fs', ndm'inquirer'
 
   ## Usage
-  n
+  navigate to the 'develop folder inside the terminal and run the command 'node index.js' From there follow the prompts until a message notifies a file has been created in the 'dist' folder. Once it has, navigate to the dist folder to find the newly created README.md file.
 
   ## Tests
   undefined
 
 ## Credits
-  n
+  Brendan Ahearn (That's me)
   ## Questions
-  Project created by n. Have any questions, compliments, or concerns? Reach out to me at my email: <n>! Want to see my other projects? 
-  Head on over to my [github](https://www.github.com/n) to find more.
+  Project created by Arcanaut. Have any questions, compliments, or concerns? Reach out to me at my email:<fake.email@gmail.com>! Want to see my other projects? 
+  Head on over to my [github](https://www.github.com/Arcanaut) to find more.
 
   ## License
-  This Project falls under the standard MIT license agreement. 
   ![Github license](http://img.shields.io/badge/license-MIT-green.svg)
+  This Project falls under the standard MIT licensing agreement. 
+  
   
