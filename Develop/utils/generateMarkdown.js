@@ -11,13 +11,13 @@ const {title, about, features, install, usage, credits, test, userName, email, l
   ${title}
   
   ## Table of Contents
-  *[Description](#Description)
-  *[Installation](#Installation)
-  *[Usage](#Usage)
-  *[Credits](#Credits)
-  *[Tests](#tests)
-  *[Questions](#Questions)
-  *[License](#License)
+  * [Description](#Description)
+  * [Installation](#Installation)
+  * [Usage](#Usage)
+  * [Credits](#Credits)
+  * [Tests](#tests)
+  * [Questions](#Questions)
+  * [License](#License)
 
 
   ## Description
