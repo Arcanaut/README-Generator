@@ -1,35 +1,53 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
-function generateMarkdown(data) {
+
+function generateMarkdown(questions) {
 // ![Github ,license](`http://img.shields.io/badge/license-${data.license}-green.svg`)
+const {title, about, features, install, usage, credits, test, userName, email, license,} = questions [0];
+// TODO: Create a function to generate markdown for README. 
 
-// TODO: Create a function to generate markdown for README
+//may need to remove ToC
 
-  return `# ${data.title}
+  return ` 
+  ${title}
+  
+  ## Table of Contents
+  [Description](#Description)
+  [Installation](#Installation)
+  [Usage](#Usage)
+  [Credits](#Credits)
+  [Tests](#tests)
+  [Questions](#Questions)
+  [License](#License)
 
-  ##Table of Contents
 
   ## Description
-  ${data.about}
+  ${about}
+
+  ## Features
+  ${features}
 
   ## Installation 
-  ${data.install}
+  ${install}
 
-  ##Usage
-  ${data.usage}
+  ## Usage
+  ${usage}
 
-  ##Credits
-  ${data.credits}
+  ## Credits
+  ${credits}
 
-  ##Test
-  ${data.test}
+  ## Tests
+  ${test}
 
-  ##Questions
-  ${data.questions}
+  ## Questions
+  Project created by ${userName}. Have any questions, compliments, or concerns? Reach out to me at my email: <${email}>! Want to see my other projects? 
+  Head on over to my [github](https://www.github.com/${userName}) to find more.
 
-  ##License
-  ${data.license}
+  ## License
+  ${license} 
+  [Github ,license](http://img.shields.io/badge/license-${license}-green.svg)
+  
 `;
 }
-
+//!
 module.exports = generateMarkdown;
