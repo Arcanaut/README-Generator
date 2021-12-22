@@ -2,13 +2,13 @@
   n
   
   ## Table of Contents
-  [Description](#Description)
-  [Installation](#Installation)
-  [Usage](#Usage)
-  [Credits](#Credits)
-  [Tests](#tests)
-  [Questions](#Questions)
-  [License](#License)
+  *[Description](#Description)
+  *[Installation](#Installation)
+  *[Usage](#Usage)
+  *[Credits](#Credits)
+  *[Tests](#tests)
+  *[Questions](#Questions)
+  *[License](#License)
 
 
   ## Description
@@ -33,6 +33,6 @@
   Head on over to my [github](https://www.github.com/n) to find more.
 
   ## License
-  MIT 
-  [Github ,license](http://img.shields.io/badge/license-MIT-green.svg)
+  This Project falls under the standard MIT license agreement. 
+  ![Github license](http://img.shields.io/badge/license-MIT-green.svg)
   

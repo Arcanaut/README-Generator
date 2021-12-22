@@ -1,12 +1,13 @@
-// TODO: Include packages needed for this application
+// packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs')
 const generateMarkdown = require('./utils/generateMarkdown')
 const questions = [];
 
 
-// TODO: Create an array of questions for user input
+//type 'Node Index.js' inside the terminal in this location to begin
 
+// questions for users to answer
 const promptUserQuestions = () => {
     return inquirer.prompt([{
                 type: 'input',
@@ -22,7 +23,7 @@ const promptUserQuestions = () => {
                 }
 
             },
-        
+
             {
                 type: 'input',
                 name: 'about',
@@ -182,47 +183,30 @@ const promptUserQuestions = () => {
                 }
             },
         ])
+        //pushes the data in to the questions array
         .then(data => {
             questions.push(data)
             console.log(questions);
             return questions;
-    
+
         });
 };
 
-
-
-// const writeFileSync = data => {
-//     //specify new file location and data
-//     fs.writeFileSync('./dist/README.md', data);
-        // if there is an error  return error
-//         if (err) {
-//             console.log(err)
-//             return;
-//             // Tell user their README has been created in the dist folder
-//         } else {
-
-//             console.log("New README created in the /dist folder")
-//         }
-//     })
-// };
-
-// // TODO: Create a function to write README file
-
-// TODO: Create a function to initialize app
+// initialize app
 function init() {
     //ask user questions
     promptUserQuestions()
         //then take the answers and pass them to generate Markdown
         .then(questions => {
-        return generateMarkdown(questions)
-    })
-    .then(generated => {
-        fs.writeFile("./dist/README.md", generated, err => {
-            if (err) throw err;
-            console.log("File successfully written! Go to the dist folder to find it!");
+            return generateMarkdown(questions)
         })
-    });
+        //generates and saves the info inside a README.md
+        .then(generated => {
+            fs.writeFile("./dist/README.md", generated, err => {
+                if (err) throw err;
+                console.log("File successfully written! Go to the dist folder to find it!");
+            })
+        });
 
 }
 
